@@ -1,3 +1,8 @@
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+
+import logo from '../../assets/images/logo.png';
+
 export interface NavigationProps {
     items: Array<{
         route: string;
@@ -5,14 +10,30 @@ export interface NavigationProps {
     }>;
 }
 
-export const Navigation = ({ items }: NavigationProps) => (
-    <nav id="navigation-component" className="text-white text-bold">
-        <ul className="flex flex-row justify-end w-full text-xl">
-            {items.map((item) => (
-                <li key={item.label} className="hover:underline pr-5">
-                    <a href="/">{item.label}</a>
-                </li>
-            ))}
-        </ul>
-    </nav>
-);
+export const Navigation = ({ items }: NavigationProps) => {
+    const { t } = useTranslation();
+    return (
+        <nav
+            id="navigation-component"
+            className="bg-primary h-full text-white text-bold w-40"
+        >
+            <div className="pt-4 flex flex-col items-center">
+                <img className="w-20" src={logo} alt="Logo" />
+                <span className="pt-4 text-gold font-bold">
+                    {t('navigation.title')}
+                </span>
+            </div>
+
+            <ul className="pt-10 flex flex-col w-full text-xl">
+                {items.map((item) => (
+                    <li
+                        key={item.label}
+                        className="pl-8 pt-2 hover:underline pr-5"
+                    >
+                        <Link to={`${item.route}`}>{item.label}</Link>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+    );
+};

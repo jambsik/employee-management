@@ -7,8 +7,8 @@ export interface LayoutProps {
 }
 
 export const Layout = ({ children }: LayoutProps) => (
-    <div className="overflow-x-hidden h-screen bg-primary">
+    <div className="overflow-x-hidden flex flex-row h-screen bg-neutral">
         <Navigation items={getLabeledRoutes()} />
-        {children}
+        <div className="p-10 w-full h-full">{children}</div>
     </div>
 );
