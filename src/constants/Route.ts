@@ -1,5 +1,6 @@
 export enum Route {
-    'Home' = '/',
+    Home = '/',
+    Employee = 'employee',
 }
 
 export const getLabeledRoutes = () =>

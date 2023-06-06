@@ -1,19 +1,10 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import { HomePage } from '../../pages/Home';
-import { ErrorPage } from '../../pages/Error';
-import { Route } from '../../constants/Route';
+import { getRoutes } from '..';
 
 describe('getRoutes tests', () => {
     it('Should match all expected routes', () => {
-        const routes = createBrowserRouter([
-            {
-                path: Route.Home,
-                element: <HomePage />,
-                errorElement: <ErrorPage />,
-            },
-        ]);
-        const { getByText } = render(<RouterProvider router={routes} />);
-        expect(getByText('Home component')).toBeInTheDocument();
+        const { getByText } = render(<RouterProvider router={getRoutes()} />);
+        expect(getByText('navigation.title')).toBeInTheDocument();
     });
 });

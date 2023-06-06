@@ -4,33 +4,25 @@
 
 :root {
     /* Primary Colors */
-    --jm-primary-color: #201c40;
-    --jm-primary-color-100: #ff00ff;
-    --jm-primary-color-200: #00ff00;
+    --jm-primary-color: #27374d;
 
     /* Secondary Colors */
-    --jm-secondary-color: #00ffff;
-    --jm-secondary-color-200: #0000ff;
-    --jm-secondary-color-400: #ffff00;
+    --jm-secondary-color: #9db2bf;
 
     /* Neutral Colors */
-    --jm-neutral-color: #ffffff;
-    --jm-neutral-color-50: #cccccc;
-    --jm-neutral-color-100: #dddddd;
-    --jm-neutral-color-200: #eeeeee;
-    --jm-neutral-color-400: #999999;
-    --jm-neutral-color-900: #333333;
+    --jm-neutral-color: #dde6ed;
+
+    --jm-gold-color: #ffd95a;
 
     /* Other Colors */
     --jm-pink-color: #ff99cc;
-    --jm-pink-color-400: #ff99cc;
+
     --jm-danger-color: #ff0000;
-    --jm-danger-color-400: #ff0000;
-    --jm-danger-color-900: #990000;
+
     --jm-turquoise-color: #00ffcc;
-    --jm-turquoise-color-400: #00ffcc;
+
     --jm-orange-color: #ff6600;
-    --jm-orange-color-400: #ff6600;
+
     --jm-purple-color: #9900ff;
 
     /* General Colors */
