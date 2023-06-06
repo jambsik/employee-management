@@ -1,0 +1,62 @@
+name: CI/CD
+
+on:
+    push:
+        branches:
+            - main
+            - staging
+            - develop
+
+jobs:
+    checks:
+        name: Quality gate
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+
+            - name: Cache Yarn dependencies
+              id: cache-yarn
+              uses: actions/cache@v3
+              with:
+                  path: ~/.cache/yarn
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+
+            - name: Install dependencies
+              run: yarn install
+
+            - name: CI Verification
+              run: |
+                  export CI=true
+
+            - name: Lint
+              run: yarn lint
+
+            - name: Unit tests
+              run: yarn test
+
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        needs: checks
+
+        steps:
+            - name: Build app
+              run: echo "Building app..."
+
+    deploy:
+        name: Deploy
+        runs-on: ubuntu-latest
+        needs: build
+
+        steps:
+            - name: Deploy app
+              run: echo "Deploying app..."

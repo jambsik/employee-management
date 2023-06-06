@@ -1,0 +1,14 @@
+version: '3'
+services:
+    employe-management:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: 'employe-management'
+        working_dir: /console
+        volumes:
+            - type: bind
+              source: $PWD
+              target: /console
+        ports:
+            - '3000:3000'
