@@ -4,5 +4,19 @@
     },
     "navigation": {
         "title": "Portal APP"
+    },
+    "model": {
+        "employee": {
+            "id": "Id",
+            "firstName": "First name",
+            "lastName": "Last name",
+            "email": "Email",
+            "jobTitle": "Job title"
+        }
+    },
+    "page": {
+        "employee": {
+            "title": "Employees Directory"
+        }
     }
 }

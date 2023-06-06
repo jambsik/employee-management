@@ -24,7 +24,7 @@ export const Navigation = ({ items }: NavigationProps) => {
                 </span>
             </div>
 
-            <ul className="pt-10 flex flex-col w-full text-xl">
+            <ul className="pt-10 flex flex-col w-full text-base">
                 {items.map((item) => (
                     <li
                         key={item.label}

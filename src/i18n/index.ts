@@ -20,4 +20,6 @@ i18n.use(initReactI18next)
     })
     .catch(console.error);
 
+export const i18nResolve = (key: string) => i18n.t(key);
+
 export default i18n;
