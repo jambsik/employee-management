@@ -3,8 +3,11 @@ import { Employee } from '../Models/Employee';
 import { Route } from '../constants/Route';
 
 import axios from 'axios';
+import { useMockAxios } from './mockService';
 
 export const API_URL = process.env.REACT_APP_API_URL;
+
+axios.interceptors.response.use(useMockAxios, console.error);
 
 export const fetchAllEmployees = async (): Promise<ApiResponse<Employee>> => {
     const response: ApiResponse<Employee> = {

@@ -1,54 +1,53 @@
 import { useEffect, useState } from 'react';
-import { i18n } from 'i18next';
 import { useTranslation } from 'react-i18next';
 
-import { fetchAllEmployees } from '../../services/employeeeService';
-import { Table, TableColumn } from '../../components/Table';
+import { Table } from '../../components/Table';
 import { Employee } from '../../Models/Employee';
-import { ApiResponse } from '../../Models/ApiResponse';
-
-const getTableColumns = (t: i18n['t']): TableColumn[] => [
-    {
-        id: 'id',
-        label: t('model.employee.id'),
-    },
-    {
-        id: 'firstName',
-        label: t('model.employee.firstName'),
-    },
-    {
-        id: 'lastName',
-        label: t('model.employee.lastName'),
-    },
-    {
-        id: 'email',
-        label: t('model.employee.email'),
-    },
-    {
-        id: 'jobTitle',
-        label: t('model.employee.jobTitle'),
-    },
-];
+import { getEmployeeDataAction } from '../../store/employee/actions/getEmployeeData';
+import { selectEmployeeItemsState } from '../../store/employee';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { SearchBar } from '../../components/SearchBar';
+import { filterEmployees, getTableColumns } from './employeesHelper';
 
 export const Employees = () => {
     const { t } = useTranslation();
-    const [data, setData] = useState<ApiResponse<Employee>>({ items: [] });
+    const dispatch = useAppDispatch();
+    const items: Employee[] = useAppSelector(selectEmployeeItemsState);
+    const [tableItems, setTableItems] = useState(items);
+    const tableActionProps = {
+        label: t('global.actions'),
+        items: [
+            {
+                id: 'edit',
+                icon: 'create',
+            },
+        ],
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
-            const d = await fetchAllEmployees();
-            console.log(d);
-            setData(d);
-        };
-        fetchData().catch(console.error);
-    }, []);
+        dispatch(getEmployeeDataAction()).catch(console.error);
+    }, [dispatch]);
+
+    useEffect(() => setTableItems(items), [items]);
+
+    const onChangeFilter = (value: string) =>
+        setTableItems(filterEmployees(value, items));
 
     return (
         <div className="w-full h-full">
             <div className="mb-16 text-xl font-bold text-primary">
                 {t('page.employee.title')}
             </div>
-            <Table<Employee> columns={getTableColumns(t)} items={data.items} />
+            <div className="w-full">
+                <div className="mb-4">
+                    <SearchBar onChangeFilter={onChangeFilter} />
+                </div>
+                <Table<Employee>
+                    columns={getTableColumns(t)}
+                    items={tableItems}
+                    actions={tableActionProps}
+                />
+            </div>
         </div>
     );
 };

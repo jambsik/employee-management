@@ -20,7 +20,7 @@ export const Navigation = ({ items }: NavigationProps) => {
             <div className="pt-4 flex flex-col items-center">
                 <img className="w-20" src={logo} alt="Logo" />
                 <span className="pt-4 text-gold font-bold">
-                    {t('navigation.title')}
+                    {t('component.navigation.title')}
                 </span>
             </div>
 

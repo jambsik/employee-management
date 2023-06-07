@@ -1,9 +1,3 @@
-[
-    {
-        "id": 38899,
-        "firstName": "Roxanne",
-        "lastName": "Ernesto",
-        "email": "Brisa_Witting@gmail.com",
-        "jobTitle": "Developer"
-    }
-]
+{
+    "status": 200
+}

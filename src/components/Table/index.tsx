@@ -1,36 +1,22 @@
+import { TableRows } from './TableRows';
+import { TableActionProps } from './TableAction';
+
 export interface TableColumn {
     id: string;
     label: string;
+    action?: TableActionProps;
 }
 
 export interface TableProps<Model> {
     columns: TableColumn[];
     items?: Model[];
+    actions?: { label: string; items: TableActionProps[] };
 }
 
-export const Table = <Model,>({ columns, items }: TableProps<Model>) => {
-    const rowsBlock = items?.map((item: Model, index: number) => {
-        return (
-            <tr key={`table_${index}`}>
-                {columns?.map((column: TableColumn) => {
-                    const columnValue = (item as Record<string, unknown>)[
-                        column.id
-                    ];
-                    return (
-                        <td
-                            key={`table_col_row_${columnValue}`}
-                            className="px-6 py-4 whitespace-nowrap"
-                        >
-                            <span className="text-sm text-gray-900">
-                                {`${columnValue}`}
-                            </span>
-                        </td>
-                    );
-                })}
-            </tr>
-        );
-    });
-
+export const Table = <Model,>(props: TableProps<Model>) => {
+    const { columns, actions } = props;
+    const columnClasses =
+        'px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider';
     return (
         <>
             <table className="min-w-full divide-y divide-gray-200">
@@ -40,16 +26,17 @@ export const Table = <Model,>({ columns, items }: TableProps<Model>) => {
                             <th
                                 id={column?.id}
                                 key={column.id}
-                                className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                className={columnClasses}
                             >
                                 {column.label}
                             </th>
                         ))}
+                        {actions && (
+                            <th className={columnClasses}>{actions?.label}</th>
+                        )}
                     </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                    {rowsBlock}
-                </tbody>
+                <TableRows<Model> {...props} />
             </table>
         </>
     );

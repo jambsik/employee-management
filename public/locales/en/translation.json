@@ -1,9 +1,15 @@
 {
-    "home": {
-        "welcome_message": "Welcome to the Portal APP"
+    "global": {
+        "actions": "Actions"
     },
-    "navigation": {
-        "title": "Portal APP"
+    "component": {
+        "navigation": {
+            "title": "Portal APP"
+        },
+        "searchBar": {
+            "placeholder": "Search...",
+            "label": "Search"
+        }
     },
     "model": {
         "employee": {
@@ -17,6 +23,9 @@
     "page": {
         "employee": {
             "title": "Employees Directory"
+        },
+        "home": {
+            "welcome_message": "Welcome to the Portal APP"
         }
     }
 }
