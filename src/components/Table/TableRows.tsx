@@ -27,11 +27,17 @@ export const TableRows = <Model,>({
                         );
                     })}
                     {actions &&
-                        actions.items?.map((props) => (
-                            <Fragment key={props.id}>
-                                <TableAction {...props} />
-                            </Fragment>
-                        ))}
+                        actions.items?.map((props) => {
+                            const tableProps = {
+                                ...props,
+                                item,
+                            };
+                            return (
+                                <Fragment key={props.id}>
+                                    <TableAction<Model> {...tableProps} />
+                                </Fragment>
+                            );
+                        })}
                 </tr>
             );
         })}

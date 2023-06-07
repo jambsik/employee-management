@@ -1,6 +1,9 @@
 {
     "global": {
-        "actions": "Actions"
+        "actions": "Actions",
+        "create": "Create",
+        "save": "Save",
+        "go_back": "Go back"
     },
     "component": {
         "navigation": {
@@ -22,10 +25,14 @@
     },
     "page": {
         "employee": {
-            "title": "Employees Directory"
+            "title": "Employees Directory",
+            "create": "Create employee"
         },
         "home": {
             "welcome_message": "Welcome to the Portal APP"
+        },
+        "error": {
+            "message": "Something went wrong. We apologize for the inconvenience."
         }
     }
 }

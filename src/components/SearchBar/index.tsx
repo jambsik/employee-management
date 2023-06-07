@@ -33,9 +33,11 @@ export const SearchBar = ({ value, onChangeFilter }: SearchBarProps) => {
                 onChange={handleChange}
                 onKeyDown={handleKeyPress}
             />
-            <Button onClick={handleClick}>
-                {t('component.searchBar.label') ?? ''}
-            </Button>
+            <div className="pl-2">
+                <Button onClick={handleClick}>
+                    {t('component.searchBar.label') ?? ''}
+                </Button>
+            </div>
         </div>
     );
 };

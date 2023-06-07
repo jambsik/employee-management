@@ -1,27 +1,27 @@
 import { i18n } from 'i18next';
 
-import { Employee } from '../../Models/Employee';
+import { Employee, EmployeeAttributes } from '../../Models/Employee';
 import { TableColumn } from '../../components/Table';
 
 export const getTableColumns = (t: i18n['t']): TableColumn[] => [
     {
-        id: 'id',
+        id: EmployeeAttributes.Id,
         label: `${t('model.employee.id')}`,
     },
     {
-        id: 'firstName',
+        id: EmployeeAttributes.FirstName,
         label: `${t('model.employee.firstName')}`,
     },
     {
-        id: 'lastName',
+        id: EmployeeAttributes.LastName,
         label: `${t('model.employee.lastName')}`,
     },
     {
-        id: 'email',
+        id: EmployeeAttributes.Email,
         label: `${t('model.employee.email')}`,
     },
     {
-        id: 'jobTitle',
+        id: EmployeeAttributes.JobTitle,
         label: `${t('model.employee.jobTitle')}`,
     },
 ];

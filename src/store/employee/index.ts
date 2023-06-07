@@ -1,10 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { Employee } from '../../Models/Employee';
-import { getEmployeeDataAction } from './actions/getEmployeeData';
+import { getEmployeeDataAction } from './actions/getEmployeeDataAction';
 import { ApiResponse } from '../../Models/ApiResponse';
 import { ReducerName } from '../reducerName';
 import { RootState } from '../index';
+import { createEmployeeAction } from './actions/createEmployeAction';
+import { deleteEmployeeAction } from './actions/deleteEmployeeAction';
 
 export interface EmployeeSliceState {
     items: Employee[];
@@ -13,18 +15,27 @@ export const initialState: EmployeeSliceState = {
     items: [],
 };
 
+const handleEmployees = (
+    state: EmployeeSliceState,
+    action: PayloadAction<ApiResponse<Employee>>,
+) => {
+    state.items = action.payload.items as Employee[];
+};
+
 export const employeeSlice = createSlice({
     name: ReducerName.Employee,
     initialState,
     reducers: {},
     extraReducers: (builder) => {
+        builder.addCase(getEmployeeDataAction.fulfilled, handleEmployees);
+        builder.addCase(deleteEmployeeAction.fulfilled, handleEmployees);
         builder.addCase(
-            getEmployeeDataAction.fulfilled,
+            createEmployeeAction.fulfilled,
             (
                 state: EmployeeSliceState,
                 action: PayloadAction<ApiResponse<Employee>>,
             ) => {
-                state.items = action.payload.items as Employee[];
+                state.items = [action.payload.item as Employee, ...state.items];
             },
         );
     },

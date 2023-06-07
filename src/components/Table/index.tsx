@@ -4,13 +4,12 @@ import { TableActionProps } from './TableAction';
 export interface TableColumn {
     id: string;
     label: string;
-    action?: TableActionProps;
 }
 
 export interface TableProps<Model> {
     columns: TableColumn[];
     items?: Model[];
-    actions?: { label: string; items: TableActionProps[] };
+    actions?: { label: string; items: Omit<TableActionProps<Model>, 'item'>[] };
 }
 
 export const Table = <Model,>(props: TableProps<Model>) => {
