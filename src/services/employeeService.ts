@@ -20,7 +20,7 @@ export const fetchAllEmployees = async (): Promise<ApiResponse<Employee>> => {
             await axios.get(`${API_URL}/${Route.Employee}`)
         )?.data;
     } catch (error) {
-        console.log(error);
+        console.error(error);
         // Simulation example
         response.error = {
             code: 'INTERNAL_SERVER_ERROR',
@@ -43,11 +43,11 @@ export const fetchCreateEmployee = async (
             await axios.post(`${API_URL}/${Route.Employee}`, employee)
         )?.data;
     } catch (error) {
-        console.log(error);
+        console.error(error);
         // Simulation example
         response.error = {
             code: 'INTERNAL_SERVER_ERROR',
-            message: 'Error getting employees..',
+            message: 'Error creating employee..',
         };
     }
 
@@ -66,11 +66,11 @@ export const fetchDeleteEmployee = async (
             await axios.delete(`${API_URL}/${Route.Employee}/${id}`)
         )?.data;
     } catch (error) {
-        console.log(error);
+        console.error(error);
         // Simulation example
         response.error = {
             code: 'INTERNAL_SERVER_ERROR',
-            message: 'Error getting employees..',
+            message: 'Error deleting employee..',
         };
     }
 
@@ -92,11 +92,11 @@ export const fetchUpdateEmployee = async (
             )
         )?.data;
     } catch (error) {
-        console.log(error);
+        console.error(error);
         // Simulation example
         response.error = {
             code: 'INTERNAL_SERVER_ERROR',
-            message: 'Error getting employees..',
+            message: 'Error updating employee..',
         };
     }
 

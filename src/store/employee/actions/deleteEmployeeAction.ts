@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { EmployeeStateEvents } from '../type';
-import { fetchDeleteEmployee } from '../../../services/employeeeService';
+import { fetchDeleteEmployee } from '../../../services/employeeService';
 
 export const deleteEmployeeAction = createAsyncThunk(
     EmployeeStateEvents.Delete,

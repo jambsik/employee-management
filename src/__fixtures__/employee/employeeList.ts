@@ -3,16 +3,16 @@ import { Employee } from './../../Models/Employee/index';
 export const employeeListMock: Employee[] = [
     {
         id: '1',
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
+        firstName: 'Jose',
+        lastName: 'Travolta',
+        email: 'jose.travolta@example.com',
         jobTitle: 'Developer',
     },
     {
         id: '2',
         firstName: 'Jane',
-        lastName: 'Smith',
-        email: 'jane.smith@example.com',
+        lastName: 'Carles',
+        email: 'jane.carles@example.com',
         jobTitle: 'Designer',
     },
     {
@@ -25,8 +25,8 @@ export const employeeListMock: Employee[] = [
     {
         id: '4',
         firstName: 'Sarah',
-        lastName: 'Williams',
-        email: 'sarah.williams@example.com',
+        lastName: 'Andrea',
+        email: 'sarah.andrea@example.com',
         jobTitle: 'Manager',
     },
     {
@@ -51,3 +51,12 @@ export const employeeListMock: Employee[] = [
         jobTitle: 'Developer',
     },
 ];
+
+export const newEmployeeMock: Omit<Employee, 'id'> = {
+    firstName: 'Joan',
+    lastName: 'Favreau',
+    email: 'joan.f@example.com',
+    jobTitle: 'Analyst',
+};
+
+export const employeeToDeleteMock: Employee = employeeListMock[0];

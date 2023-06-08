@@ -5,6 +5,6 @@ import { getRoutes } from '..';
 describe('getRoutes tests', () => {
     it('Should match all expected routes', () => {
         const { getByText } = render(<RouterProvider router={getRoutes()} />);
-        expect(getByText('navigation.title')).toBeInTheDocument();
+        expect(getByText('component.navigation.title')).toBeInTheDocument();
     });
 });

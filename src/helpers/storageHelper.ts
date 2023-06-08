@@ -1,18 +1,20 @@
-const namespace = 'jm';
+export const storageNameSpace = 'jm';
 
 export const getStorageItem = (key: string) => {
     let item;
+    let storedValue;
 
     try {
-        item = localStorage.getItem(`${namespace}/${key}`);
-        item = JSON.parse(item ?? '');
+        storedValue = localStorage.getItem(`${storageNameSpace}/${key}`);
+        item = JSON.parse(storedValue ?? '');
     } catch (error) {
-        console.error(error);
-        item = undefined;
+        if ((error as Error).message.includes('Unexpected end of JSON input')) {
+            item = storedValue;
+        }
     }
 
     return item;
 };
 
 export const setStorageItem = (key: string, value: string) =>
-    localStorage.setItem(`${namespace}/${key}`, value);
+    localStorage.setItem(`${storageNameSpace}/${key}`, value);
