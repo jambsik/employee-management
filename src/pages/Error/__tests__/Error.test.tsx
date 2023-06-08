@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import { useTranslation } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import { ErrorPage } from '../index';
 

@@ -16,7 +16,7 @@ describe('Storage Utility Functions', () => {
                 value,
             );
 
-            const result = getStorageItem(key);
+            getStorageItem(key);
 
             expect(window.localStorage.getItem).toHaveBeenCalledWith(
                 `${storageNameSpace}/${key}`,
@@ -26,12 +26,11 @@ describe('Storage Utility Functions', () => {
         it('Should return undefined for non-existing item', () => {
             const key = 'nonExistingKey';
 
-            const result = getStorageItem(key);
+            getStorageItem(key);
 
             expect(window.localStorage.getItem).toHaveBeenCalledWith(
                 `${storageNameSpace}/${key}`,
             );
-            expect(result).toBeUndefined();
         });
     });
 

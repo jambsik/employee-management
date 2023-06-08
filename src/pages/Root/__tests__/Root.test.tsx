@@ -1,4 +1,4 @@
-import { getAllByAltText, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { MemoryRouter, Routes, Route as ReactRoute } from 'react-router-dom';
 
 import { Root } from '../index';
@@ -12,12 +12,14 @@ const getRenderRoute = (path: string, element: ReactElement) => {
     return render(
         <MemoryRouter initialEntries={[route]}>
             <Routes>
-                <ReactRoute path="/" element={<Root />} />
+                <ReactRoute path="*" element={<Root />} />
                 <ReactRoute path={route} element={element} />,
             </Routes>
         </MemoryRouter>,
     );
 };
+
+const mockedTitle = 'Mocked Route';
 
 describe('Root Page tests', () => {
     it('Should render the Home component on the Home route', () => {
@@ -26,7 +28,7 @@ describe('Root Page tests', () => {
             <MockedRouteComponent />,
         );
 
-        const mockedCOmponent = getByText('page.home.welcome_message');
+        const mockedCOmponent = getByText(mockedTitle);
         expect(mockedCOmponent).toBeInTheDocument();
     });
 
@@ -35,7 +37,7 @@ describe('Root Page tests', () => {
             Route.Employee,
             <MockedRouteComponent />,
         );
-        const mockedCOmponent = getByText('Mocked Route');
+        const mockedCOmponent = getByText(mockedTitle);
         expect(mockedCOmponent).toBeInTheDocument();
     });
 
@@ -44,7 +46,7 @@ describe('Root Page tests', () => {
             NeestedRoute.CreateEmployee,
             <MockedRouteComponent />,
         );
-        const mockedCOmponent = getByText('Mocked Route');
+        const mockedCOmponent = getByText(mockedTitle);
         expect(mockedCOmponent).toBeInTheDocument();
     });
 
@@ -53,7 +55,6 @@ describe('Root Page tests', () => {
             NeestedRoute.EditEmployee,
             <MockedRouteComponent />,
         );
-        const mockedCOmponent = getByText('Mocked Route');
+        const mockedCOmponent = getByText(mockedTitle);
         expect(mockedCOmponent).toBeInTheDocument();
     });
-});
