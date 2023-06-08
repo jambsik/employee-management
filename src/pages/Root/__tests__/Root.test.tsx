@@ -58,3 +58,4 @@ describe('Root Page tests', () => {
         const mockedCOmponent = getByText(mockedTitle);
         expect(mockedCOmponent).toBeInTheDocument();
     });
+});
