@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import logo from '../../assets/images/logo.png';
+import logo from '../../../assets/images/logo.png';
 
 export interface NavigationProps {
     items: Array<{
@@ -20,11 +20,11 @@ export const Navigation = ({ items }: NavigationProps) => {
             <div className="pt-4 flex flex-col items-center">
                 <img className="w-20" src={logo} alt="Logo" />
                 <span className="pt-4 text-gold font-bold">
-                    {t('navigation.title')}
+                    {t('component.navigation.title')}
                 </span>
             </div>
 
-            <ul className="pt-10 flex flex-col w-full text-xl">
+            <ul className="pt-10 flex flex-col w-full text-base">
                 {items.map((item) => (
                     <li
                         key={item.label}

@@ -1,8 +1,39 @@
 {
-    "home": {
-        "welcome_message": "Welcome to the Portal APP"
+    "global": {
+        "actions": "Actions",
+        "create": "Create",
+        "save": "Save",
+        "go_back": "Go back"
     },
-    "navigation": {
-        "title": "Portal APP"
+    "component": {
+        "navigation": {
+            "title": "Portal App"
+        },
+        "searchBar": {
+            "placeholder": "Search...",
+            "label": "Search"
+        }
+    },
+    "model": {
+        "employee": {
+            "id": "Id",
+            "firstName": "First name",
+            "lastName": "Last name",
+            "email": "Email",
+            "jobTitle": "Job title"
+        }
+    },
+    "page": {
+        "employee": {
+            "title": "Employees Directory",
+            "create": "Create employee",
+            "edit": "Edit employee"
+        },
+        "home": {
+            "welcome_message": "Welcome to the Portal APP"
+        },
+        "error": {
+            "message": "Something went wrong. We apologize for the inconvenience."
+        }
     }
 }
