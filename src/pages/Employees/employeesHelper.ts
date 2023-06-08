@@ -1,7 +1,7 @@
 import { i18n } from 'i18next';
 
 import { Employee, EmployeeAttributes } from '../../Models/Employee';
-import { TableColumn } from '../../components/Table';
+import { TableColumn } from '../../components/organisms/Table';
 
 export const getTableColumns = (t: i18n['t']): TableColumn[] => [
     {

@@ -5,6 +5,7 @@ export enum Route {
 
 export enum NeestedRoute {
     CreateEmployee = '/employee/create',
+    EditEmployee = '/employee/:id',
 }
 
 export const getLabeledRoutes = () =>

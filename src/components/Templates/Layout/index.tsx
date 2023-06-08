@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import { Navigation } from '../Navigation';
-import { getLabeledRoutes } from '../../constants/Route';
+import { Navigation } from '../../organisms/Navigation';
+import { getLabeledRoutes } from '../../../constants/Route';
 
 export interface LayoutProps {
     children: ReactElement;

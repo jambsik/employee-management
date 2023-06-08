@@ -1,27 +1,24 @@
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import { Table } from '../../components/Table';
+import { Table } from '../../components/organisms/Table';
 import { Employee } from '../../Models/Employee';
-import { getEmployeeDataAction } from '../../store/employee/actions/getEmployeeDataAction';
-import { selectEmployeeItemsState } from '../../store/employee';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { SearchBar } from '../../components/SearchBar';
-import { filterEmployees, getTableColumns } from './employeesHelper';
-import { Button } from '../../components/Button';
+import { SearchBar } from '../../components/molecules/SearchBar';
+import { getTableColumns } from './employeesHelper';
+import { Button } from '../../components/atoms/Button';
 import { NeestedRoute } from '../../constants/Route';
-import { deleteEmployeeAction } from '../../store/employee/actions/deleteEmployeeAction';
+import { useEmployeeManagement } from './hooks/useEmployeeManagement';
 
 export const Employees = () => {
     const { t } = useTranslation();
-    const dispatch = useAppDispatch();
-    const items: Employee[] = useAppSelector(selectEmployeeItemsState);
-    const [tableItems, setTableItems] = useState(items);
-
-    const handleDelete = (item: Employee) => {
-        dispatch(deleteEmployeeAction(item.id)).catch(console.error);
-    };
+    const {
+        filter,
+        handleFilterChange,
+        tableItems,
+        handleDelete,
+        handleEdit,
+        onSubmitFilter,
+    } = useEmployeeManagement();
 
     const tableActionProps = {
         label: t('global.actions'),
@@ -34,18 +31,10 @@ export const Employees = () => {
             {
                 id: 'edit',
                 icon: 'create',
+                onClick: handleEdit,
             },
         ],
     };
-
-    useEffect(() => {
-        dispatch(getEmployeeDataAction()).catch(console.error);
-    }, [dispatch]);
-
-    useEffect(() => setTableItems(items), [items]);
-
-    const onChangeFilter = (value: string) =>
-        setTableItems(filterEmployees(value, items));
 
     return (
         <div className="w-full h-full">
@@ -59,7 +48,11 @@ export const Employees = () => {
             </div>
             <div className="w-full">
                 <div className="mb-4">
-                    <SearchBar onChangeFilter={onChangeFilter} />
+                    <SearchBar
+                        value={filter}
+                        onSubmitFilter={onSubmitFilter}
+                        handleChange={handleFilterChange}
+                    />
                 </div>
                 <Table<Employee>
                     columns={getTableColumns(t)}

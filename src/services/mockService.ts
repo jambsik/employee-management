@@ -5,8 +5,13 @@ import { employeeListMock } from './../__fixtures__/employee/employeeList';
 import { getStorageItem, setStorageItem } from '../helpers/storageHelper';
 import { Route } from '../constants/Route';
 import { Employee } from '../Models/Employee';
+import { RequestMethod } from '../constants/RequestMethod';
 
-export const API_URL = process.env.REACT_APP_API_URL;
+/**
+ This is just a file to simulate the api, with an approach to intercept requests made to a fictitious endpoint.
+ */
+
+export const API_URL = process.env?.REACT_APP_API_URL ?? '';
 
 export const useMockAxios = (response: AxiosResponse) => {
     if (response.config.url === `${API_URL}/${Route.Employee}`) {
@@ -27,8 +32,10 @@ export const useMockErrorAxios = (error: AxiosError) => {
     if (error?.config?.url?.includes(`${API_URL}/${Route.Employee}`)) {
         const mock = getStorageItem('employees');
         const requestData = error?.config?.data;
+        const parts = error?.config?.url.split('/');
+        const id = parts[parts.length - 1];
 
-        if (error?.config?.method === 'post') {
+        if (error?.config?.method === RequestMethod.Post) {
             const response = requestData
                 ? {
                       data: {
@@ -46,10 +53,17 @@ export const useMockErrorAxios = (error: AxiosError) => {
                 );
             }
             return response;
-        } else if (error?.config?.method === 'delete') {
-            const parts = error?.config?.url.split('/');
-            const id = parts[parts.length - 1];
+        } else if (error?.config?.method === RequestMethod.Delete) {
             const data = mock?.filter((d: Employee) => d.id !== id);
+            setStorageItem('employees', JSON.stringify(data));
+            return { data };
+        } else if (error?.config?.method === RequestMethod.Put) {
+            const data = mock?.map((e: Employee) => {
+                if (e.id === id) {
+                    return JSON.parse(requestData);
+                }
+                return e;
+            });
             setStorageItem('employees', JSON.stringify(data));
             return { data };
         }

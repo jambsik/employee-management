@@ -1,14 +1,14 @@
 import { FormEvent, useState, ChangeEvent } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { Input } from '../../components/Input';
-import { Button } from '../../components/Button';
+import { Input } from '../../atoms/Input';
+import { Button } from '../../atoms/Button';
 import {
     Employee,
     EmployeeAttributes,
     getEmployeeAttributes,
-} from '../../Models/Employee';
-import { emailRegex } from '../../helpers/regexHelper';
+} from '../../../Models/Employee';
+import { emailRegex } from '../../../helpers/regexHelper';
 
 export type EmployeeFormType = Omit<Employee, EmployeeAttributes.Id>;
 
@@ -79,7 +79,7 @@ export const EmployeeForm = ({
                                         }
                                         value={
                                             values[
-                                                field as keyof EmployeeFormType
+                                                fieldId as keyof EmployeeFormType
                                             ]
                                         }
                                         onChange={(

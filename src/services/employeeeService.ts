@@ -4,7 +4,7 @@ import { Route } from '../constants/Route';
 
 import axios from 'axios';
 import { useMockAxios, useMockErrorAxios } from './mockService';
-import { EmployeeFormType } from '../pages/Employees/employeeForm';
+import { EmployeeFormType } from '../components/organisms/EmployeeForm/employeeForm';
 
 export const API_URL = process.env.REACT_APP_API_URL;
 
@@ -64,6 +64,32 @@ export const fetchDeleteEmployee = async (
     try {
         response.items = (
             await axios.delete(`${API_URL}/${Route.Employee}/${id}`)
+        )?.data;
+    } catch (error) {
+        console.log(error);
+        // Simulation example
+        response.error = {
+            code: 'INTERNAL_SERVER_ERROR',
+            message: 'Error getting employees..',
+        };
+    }
+
+    return response;
+};
+
+export const fetchUpdateEmployee = async (
+    employee: Employee,
+): Promise<ApiResponse<Employee>> => {
+    const response: ApiResponse<Employee> = {
+        items: [],
+    };
+
+    try {
+        response.items = (
+            await axios.put(
+                `${API_URL}/${Route.Employee}/${employee.id}`,
+                employee,
+            )
         )?.data;
     } catch (error) {
         console.log(error);

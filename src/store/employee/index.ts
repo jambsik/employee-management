@@ -7,6 +7,7 @@ import { ReducerName } from '../reducerName';
 import { RootState } from '../index';
 import { createEmployeeAction } from './actions/createEmployeAction';
 import { deleteEmployeeAction } from './actions/deleteEmployeeAction';
+import { updateEmployeeAction } from './actions/editEmployeeAction';
 
 export interface EmployeeSliceState {
     items: Employee[];
@@ -29,6 +30,7 @@ export const employeeSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getEmployeeDataAction.fulfilled, handleEmployees);
         builder.addCase(deleteEmployeeAction.fulfilled, handleEmployees);
+        builder.addCase(updateEmployeeAction.fulfilled, handleEmployees);
         builder.addCase(
             createEmployeeAction.fulfilled,
             (

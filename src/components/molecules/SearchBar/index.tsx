@@ -1,27 +1,32 @@
-import { ChangeEvent, useState, useCallback } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Input } from '../Input';
-import { Button } from '../Button';
+import { Input } from '../../atoms/Input';
+import { Button } from '../../atoms/Button';
 
 export interface SearchBarProps {
-    value?: string;
-    onChangeFilter: (value: string) => void;
+    value: string;
+    handleChange: (value: string) => void;
+    onSubmitFilter: (value: string) => void;
 }
 
-export const SearchBar = ({ value, onChangeFilter }: SearchBarProps) => {
+export const SearchBar = ({
+    value,
+    onSubmitFilter,
+    handleChange,
+}: SearchBarProps) => {
     const { t } = useTranslation();
-    const [filter, setFilter] = useState(value ?? '');
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setFilter(event.target.value);
-    };
+
+    const handleOnChangeValue = (event: ChangeEvent<HTMLInputElement>) =>
+        handleChange(event.target.value);
+
     const handleClick = useCallback(() => {
-        onChangeFilter(filter);
-    }, [onChangeFilter, filter]);
+        onSubmitFilter(value);
+    }, [value, onSubmitFilter]);
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            onChangeFilter(filter);
+            onSubmitFilter(value);
         }
     };
 
@@ -29,8 +34,8 @@ export const SearchBar = ({ value, onChangeFilter }: SearchBarProps) => {
         <div className="flex items-center w-full">
             <Input
                 placeholder={t('component.searchBar.placeholder') ?? ''}
-                value={filter}
-                onChange={handleChange}
+                value={value}
+                onChange={handleOnChangeValue}
                 onKeyDown={handleKeyPress}
             />
             <div className="pl-2">

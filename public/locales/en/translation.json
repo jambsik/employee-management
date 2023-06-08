@@ -7,7 +7,7 @@
     },
     "component": {
         "navigation": {
-            "title": "Portal APP"
+            "title": "Portal App"
         },
         "searchBar": {
             "placeholder": "Search...",
@@ -26,7 +26,8 @@
     "page": {
         "employee": {
             "title": "Employees Directory",
-            "create": "Create employee"
+            "create": "Create employee",
+            "edit": "Edit employee"
         },
         "home": {
             "welcome_message": "Welcome to the Portal APP"
