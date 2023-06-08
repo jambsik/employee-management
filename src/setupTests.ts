@@ -5,3 +5,5 @@
 import '@testing-library/jest-dom';
 
 import '../test-utils/localStorage.mock';
+
+process.env.REACT_APP_API_URL = 'http://fake-api.com';

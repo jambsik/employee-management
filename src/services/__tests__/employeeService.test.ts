@@ -16,7 +16,7 @@ import { useConsoleMock } from '../../../test-utils/console.mock';
 
 jest.mock('axios');
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'http://fake-api.com';
 
 describe('Employee Service Tests cases', () => {
     beforeEach(() => {
