@@ -11,13 +11,13 @@ export const TableRows = <Model,>({
         {items?.map((item: Model, index: number) => {
             return (
                 <tr key={`table_${index}`}>
-                    {columns?.map((column: TableColumn) => {
+                    {columns?.map((column: TableColumn, index: number) => {
                         const columnValue = (item as Record<string, unknown>)[
                             column.id
                         ];
                         return (
                             <td
-                                key={`table_col_row_${columnValue}`}
+                                key={`table_col_row_${columnValue}_${index}`}
                                 className="px-6 py-4 whitespace-nowrap"
                             >
                                 <span className="text-sm text-gray-900">
