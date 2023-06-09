@@ -73,6 +73,16 @@ To run the Employee Management Portal on your local machine, follow these steps:
 
 -   Run `yarn start`
 
+#### Code Checks
+
+To run the Employee Management Portal on your local machine, follow these steps:
+
+-   Lint: `yarn lint`
+-   Tests: `yarn test`
+-   Coverage: `yarn test:coverage`
+-   Typing: `yarn type:checks`
+-   Format code: `yarn prettier`
+
 ### 🌟 Check out my GitHub Profile
 
 If you're interested in more of my projects, contributions, and activities, feel free to visit my [GitHub profile](https://github.com/jambsik).

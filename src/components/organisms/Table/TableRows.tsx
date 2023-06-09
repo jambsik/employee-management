@@ -20,9 +20,12 @@ export const TableRows = <Model,>({
                                 key={`table_col_row_${columnValue}_${index}`}
                                 className="px-6 py-4 whitespace-nowrap"
                             >
-                                <span className="text-sm text-gray-900">
+                                <div
+                                    className="max-w-[200px] text-sm text-gray-900 truncate overflow-hidden"
+                                    title={`${columnValue}`}
+                                >
                                     {`${columnValue}`}
-                                </span>
+                                </div>
                             </td>
                         );
                     })}
